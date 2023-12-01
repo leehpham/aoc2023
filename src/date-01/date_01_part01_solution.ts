@@ -1,4 +1,4 @@
-export class Date01Solution {
+export class Date01Part01Solution {
   private lines: string[];
 
   constructor(lines: string[]) {
