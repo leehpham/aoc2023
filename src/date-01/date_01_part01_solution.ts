@@ -1,5 +1,5 @@
 export class Date01Part01Solution {
-  private lines: string[];
+  protected lines: string[];
 
   constructor(lines: string[]) {
     this.lines = lines;
