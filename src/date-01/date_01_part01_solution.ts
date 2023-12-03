@@ -1,10 +1,7 @@
-export class Date01Part01Solution {
-  protected lines: string[];
+import { Solution } from "../solution";
+import { SolutionData } from "../solution_data";
 
-  constructor(lines: string[]) {
-    this.lines = lines;
-  }
-
+export class Date01Part01Solution extends SolutionData implements Solution {
   solve(): number {
     const numRegEx = /\d/g;
     const numbers = this.lines.map(line => {

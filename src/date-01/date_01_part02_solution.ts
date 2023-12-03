@@ -1,6 +1,7 @@
-import { Date01Part01Solution } from "./date_01_part01_solution";
+import { Solution } from "../solution";
+import { SolutionData } from "../solution_data";
 
-export class Date01Part02Solution extends Date01Part01Solution {
+export class Date01Part02Solution extends SolutionData implements Solution {
   private static readonly TEXT_TO_NUM: { [key: string]: number } = {
     "one": 1,
     "two": 2,
@@ -13,7 +14,7 @@ export class Date01Part02Solution extends Date01Part01Solution {
     "nine": 9
   };
 
-  override solve(): number {
+  solve(): number {
     const regex = /\d|(?=(one|two|three|four|five|six|seven|eight|nine))/g;
     const numbers = this.lines.map(line => {
       let regexExecArr: RegExpExecArray | null;
