@@ -1,4 +1,4 @@
-export class SolutionData {
+export abstract class SolutionData {
   protected lines: string[];
 
   constructor(lines: string[]) {

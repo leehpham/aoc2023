@@ -12,6 +12,6 @@ export class CustomFileReader {
 
   read(): string[] {
     const input = fs.readFileSync(path.join(process.cwd(), this.folderPath, this.inputFile), "utf8"); 
-    return input.split("\n");
+    return input.split("\n").filter(line => !!line);
   }
 }
