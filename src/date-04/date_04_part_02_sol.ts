@@ -2,36 +2,36 @@ import { Solution } from "../solution";
 import { SolutionData } from "../solution_data";
 
 export class Date04Part02Sol extends SolutionData implements Solution {
-  private readonly cardMatch: { [key: string]: number };
-  private readonly cardCount: { [key: string]: number };
+  private readonly cardWinCount: { [key: string]: number };
+  private readonly cardSetCount: { [key: string]: number };
 
   constructor(lines: string[]) {
     super(lines);
-    this.cardMatch = {};
-    this.cardCount = {};
+    this.cardWinCount = {};
+    this.cardSetCount = {};
   }
 
   solve(): number {
-    this.buildCardMatch();
-    return Object.keys(this.cardMatch).reduce((acc, card) => acc + this.getCardsWon(card), 0);
+    this.buildCardWinCount();
+    return Object.keys(this.cardWinCount).reduce((acc, card) => acc + this.getCardSetCount(card), 0);
   }
 
-  private getCardsWon(card: string): number {
-    if (Object.keys(this.cardCount).includes(card)) {
-      return this.cardCount[card];
+  private getCardSetCount(card: string): number {
+    if (Object.keys(this.cardSetCount).includes(card)) {
+      return this.cardSetCount[card];
     }
-    const nextCards = this.getNextCards(card, this.cardMatch[card]);
+    const nextCards = this.getNextCards(card, this.cardWinCount[card]);
     if (!nextCards.length) {
       return 1;
     }
-    let numCardsWon = 1;
+    let numCardsInSet = 1;
     nextCards.forEach(card => {
-      numCardsWon += this.getCardsWon(card);
+      numCardsInSet += this.getCardSetCount(card);
     });
-    if (!Object.keys(this.cardCount).includes(card)) {
-      this.cardCount[card] = numCardsWon;
+    if (!Object.keys(this.cardSetCount).includes(card)) {
+      this.cardSetCount[card] = numCardsInSet;
     }
-    return numCardsWon;
+    return numCardsInSet;
   }
 
   private getNextCards(card: string, match: number): string[] {
@@ -42,7 +42,7 @@ export class Date04Part02Sol extends SolutionData implements Solution {
     return nextCards;
   }
 
-  private buildCardMatch(): void {
+  private buildCardWinCount(): void {
     const cardNumRegex = /\d+(?=:)/g;
     const winningNumsRegex = /(?<=:\s+)\d.*(?=\s+\|)/g;
     const ownedNumsRegex = /(?<=\|\s+)\d.*$/g;
@@ -59,7 +59,7 @@ export class Date04Part02Sol extends SolutionData implements Solution {
         }
       });
 
-      this.cardMatch[cardNum] = wonNumsCount;
+      this.cardWinCount[cardNum] = wonNumsCount;
     });
   }
 }
