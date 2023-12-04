@@ -11,7 +11,7 @@ export class Date03Part01Sol extends SolutionData implements Solution {
       for (let col = 0; col < engineSchematic[row].length; col++) {
         if (!this.isLeftSymbol(engineSchematic, row, col)
           && (!this.isTopLeftSymbol(engineSchematic, row, col))
-          && (row >= 1 && !this.isSymbol(engineSchematic[row - 1][col]))
+          && (!this.isTopSymbol(engineSchematic, row, col))
           && (row >= 1 && !this.isSymbol(engineSchematic[row -1][col + 1]))
           && (!this.isSymbol(engineSchematic[row][col + 1]))
         ) {
