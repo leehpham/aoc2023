@@ -48,17 +48,14 @@ export class Date04Part02Sol extends SolutionData implements Solution {
     const ownedNumsRegex = /(?<=\|\s+)\d.*$/g;
     this.lines.forEach(line => {
       const cardNum = line.match(cardNumRegex)?.[0] ?? "0";
-      
       const winningNums = line.match(winningNumsRegex)?.[0].split(/\s+/).map(item => parseInt(item)) ?? [];
       const ownedNums = line.match(ownedNumsRegex)?.[0].split(/\s+/).map(item => parseInt(item)) ?? [];
-      
       let wonNumsCount = 0;
       ownedNums.forEach(ownedNum => {
         if (winningNums.includes(ownedNum)) {
           wonNumsCount++;
         }
       });
-
       this.cardWinCount[cardNum] = wonNumsCount;
     });
   }

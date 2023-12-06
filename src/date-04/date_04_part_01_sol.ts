@@ -9,7 +9,6 @@ export class Date04Part01Sol extends SolutionData implements Solution {
     this.lines.forEach(line => {
       const winningNums = line.match(winningNumsRegex)?.[0].split(/\s+/).map(item => parseInt(item)) ?? [];
       const ownedNums = line.match(ownedNumsRegex)?.[0].split(/\s+/).map(item => parseInt(item)) ?? [];
-      
       let wonNumsCount = 0;
       ownedNums.forEach(ownedNum => {
         if (winningNums.includes(ownedNum)) {

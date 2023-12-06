@@ -24,7 +24,6 @@ export class Date02Part01Sol extends SolutionData implements Solution {
       if (gameIDMatch) {
         gameID = parseInt(gameIDMatch[0].split(" ")[1]);
       }
-
       const gameData = line.match(gameDataRegex)?.[0] ?? "";
       const sets = gameData.split(";").map(data => data.trim());
       let isValidSets = true;
